@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: Todo_development
+
+test:
+  adapter: postgresql
+  database: Todo_test
+
