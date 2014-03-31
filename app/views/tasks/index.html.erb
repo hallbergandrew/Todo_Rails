@@ -1,0 +1,9 @@
+<h1> Tasks </h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li><a href="/tasks/<%= task.id %>"><%= task.name %></a></li>
+  <% end %>
+</ul>
+
+<p><a href="/tasks/new">Create new task</a></p>
