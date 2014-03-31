@@ -2,4 +2,12 @@
 
 <h4>Description: <%= @task.description %></h4>
 
+<p><a href="/tasks/<%= @task.id %>/edit">Click to edit</a></p>
+
+<p><a href="/tasks/<%= @task.id %>"
+      data-confirm="You sure?"
+      data-method="delete"
+      rel="nofollow">Delete</a></p>
+
+
 <p><a href="/">Back to list</a></p>
