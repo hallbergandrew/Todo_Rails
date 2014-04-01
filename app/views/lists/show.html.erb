@@ -1,0 +1,22 @@
+<h1><%= @list.name %></h1>
+
+<h3>Here are all of your completed tasks</h3>
+<ul><% @task_done.each do |task| %>
+  <li><a href="/tasks/<%= task.id %>"><%= task.name %></a>
+    <form action="/tasks/<%= task.id %>/not_done" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <input name="not_done" type="hidden" value="false">
+    <button>Mark not done</button>
+  </li>
+<% end %></ul>
+
+<h3>Here are all of your tasks that are not completed</h3>
+
+<ul><% @task_not_done.each do |task| %>
+  <li><a href="/tasks/<%= task.id %>"><%= task.name %></a>
+    <form action="/tasks/<%= task.id %>/done" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <input name="done" type="hidden" value="true">
+    <button>Mark done</button>
+  </li>
+<% end %></ul>

@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create({:name => params[:name] , :description => params[:description]})
+    @task = Task.create({:name => params[:name], :description => params[:description], :done => false})
 
     if @task.save
       render('tasks/success.html.erb')
@@ -42,6 +42,24 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     render('tasks/destroy.html.erb')
+  end
+
+  def done
+    done = Task.find(params[:id])
+    done.update({:done => true})
+    @list = List.find(done.list_id)
+    @task_not_done = @list.tasks.where(done: false)
+    @task_done = @list.tasks.where(done: true)
+    render('lists/show.html.erb')
+  end
+
+  def not_done
+    not_done = Task.find(params[:id])
+    not_done.update({:done => false})
+    @list = List.find(not_done.list_id)
+    @task_not_done = @list.tasks.where(done: false)
+    @task_done = @list.tasks.where(done: true)
+    render('lists/show.html.erb')
   end
 
 end
